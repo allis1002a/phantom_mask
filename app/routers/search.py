@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Query
 from typing import List
-from models.pharmacy_model import PharmacySearchResult
-from models.pharmacy_model import SearchTarget
-from db import pharmacies_collection
+from app.models.pharmacy_model import PharmacyOrMaskSearchResult
+from app.models.pharmacy_model import SearchTarget
+from app.db import pharmacies_collection
 from rapidfuzz import fuzz
 
 router = APIRouter()
@@ -14,7 +14,8 @@ router = APIRouter()
 # use REGEX in Mongodb, then calculate simlarity score.
 # order by  similarity score, mask name or pharmacy_name
 
-@router.get("/fuzzy/pharmacy-or-mask", response_model=List[PharmacySearchResult], summary="Fuzzy search by pharmacy or mask name")
+
+@router.get("/fuzzy/pharmacy-or-mask", response_model=List[PharmacyOrMaskSearchResult], summary="Fuzzy search by pharmacy or mask name")
 async def fuzzy_search_names(
     search_target: SearchTarget = Query(..., description="Choose pharmacy or mask"),
     keyword: str = Query(..., min_length=1)

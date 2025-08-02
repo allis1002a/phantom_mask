@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Union
 from enum import Enum
 
 class OpeningHour(BaseModel):
@@ -22,6 +22,16 @@ class PharmacySearchResult(BaseModel):
     pharmacy_name: Optional[str] = None
     mask_name: Optional[List[Mask]] = []
     relevance_score: float
+
+class PharmacyResult(BaseModel):
+    pharmacy_name: str
+    relevance_score: float
+
+class MaskResult(BaseModel):
+    mask_name: str
+    relevance_score: float
+
+PharmacyOrMaskSearchResult = Union[PharmacyResult, MaskResult]
 
 # API condition
 class MaskCountCondition(str, Enum):

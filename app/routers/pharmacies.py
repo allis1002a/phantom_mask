@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Query, HTTPException
-from db import pharmacies_collection
+from app.db import pharmacies_collection
 from datetime import datetime
-from models.pharmacy_model import PharmacyOpeningHour, Mask, PharmacyWithPriceMasks
-from models.pharmacy_model import MaskCountCondition
+from app.models.pharmacy_model import PharmacyOpeningHour, Mask, PharmacyWithPriceMasks
+from app.models.pharmacy_model import MaskCountCondition
 from typing import List
 import re
 

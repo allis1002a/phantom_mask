@@ -11,8 +11,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    # volumes:
-    #   - mongo_data:/data/db
 
   mongo-express:
     image: mongo-express:1.0.2-18
@@ -28,6 +26,19 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
+
+  api-service:
+    image: fastapi:test
+    container_name: api
+    ports:
+      - "9789:80"
+    depends_on:
+      - mongodb
+      - mongo-express
+    networks:
+      - mongo_net
+    command: "./start.sh"
+
 
 networks:
   mongo_net:
