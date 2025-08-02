@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Query
 from typing import List
-from models.pharmacy_model import PharmacySearchResult
-from models.pharmacy_model import SearchTarget
-from db import pharmacies_collection
+from app.models.pharmacy_model import PharmacySearchResult
+from app.models.pharmacy_model import SearchTarget
+from app.db import pharmacies_collection
 from rapidfuzz import fuzz
 
 router = APIRouter()

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import pharmacies, users, search
+from app.routers import pharmacies, users, search
 
 app = FastAPI()
 
