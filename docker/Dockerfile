@@ -7,4 +7,3 @@ RUN pip install --upgrade pip \
 
 COPY . .
 RUN chmod +x start.sh
-# CMD []

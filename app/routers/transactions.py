@@ -62,7 +62,6 @@ async def purchase_masks(purchase: PurchaseRequest):
     response = {
         "status": "success",
         "total_spent": total_cost,
-        "transactions": transactions
     }
 
     return response

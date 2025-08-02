@@ -1,73 +1,51 @@
 # Response
-> The Current content is an **example template**; please edit it to fit your style and content.
 ## A. Required Information
 ### A.1. Requirement Completion Rate
-- [x] List all pharmacies open at a specific time and on a day of the week if requested.
-  - Implemented at xxx API.
-- [x] List all masks sold by a given pharmacy, sorted by mask name or price.
-  - Implemented at xxx API.
-- [x] List all pharmacies with more or less than x mask products within a price range.
-  - Implemented at xxx API.
-- [x] The top x users by total transaction amount of masks within a date range.
-  - Implemented at xxx API.
-- [x] The total number of masks and dollar value of transactions within a date range.
-  - Implemented at xxx API.
-- [x] Search for pharmacies or masks by name, ranked by relevance to the search term.
-  - Implemented at xxx API.
-- [x] Process a user purchases a mask from a pharmacy, and handle all relevant data changes in an atomic transaction.
-  - Implemented at xxx API.
-### A.2. API Document
-> Please describe how to use the API in the API documentation. You can edit by any format (e.g., Markdown or OpenAPI) or free tools (e.g., [hackMD](https://hackmd.io/), [postman](https://www.postman.com/), [google docs](https://docs.google.com/document/u/0/), or  [swagger](https://swagger.io/specification/)).
+- [V] List all pharmacies open at a specific time and on a day of the week if requested.
+  - Implemented endpoint `/pharmacies/open`.
+  - Example input
+  ![](docs/pharmacies_open.png)
+- [V] List all masks sold by a given pharmacy, sorted by mask name or price.
+  - Implemented at endpoint `/pharmacies/{pharmacy_name}/masks`.
+  - Example input
+  ![](docs/pharmacyies_name.png)
+- [V] List all pharmacies with more or less than x mask products within a price range.
+  - Implemented at endpoint `/pharmacies/masks/by-price-range`.
+  - Example input
+  ![](docs/masks-by-price.png)
+- [V] The top x users by total transaction amount of masks within a date range.
+  - Implemented at endpoint `/users/top-by-amount`.
+  - Example input
+  ![](docs/user-top-by-amount.png)
+- [V] The total number of masks and dollar value of transactions within a date range.
+  - Implemented at endpoint `/users/transactions/summary`.
+  - Example input
+  ![](docs/transactions-summary.png)
+- [V] Search for pharmacies or masks by name, ranked by relevance to the search term.
+  - Implemented at endpoint `/search/fuzzy/pharmacy-or-mask`.
+  - Example input
+  ![](docs/serch-pharmacies.png)
+- [V] Process a user purchases a mask from a pharmacy, and handle all relevant data changes in an atomic transaction.
+  - Implemented at endpoint `/transactions/purchase`.
+  - Example input
+  ![](docs/transactions-purchase.png)
 
-Import [this](#api-document) json file to Postman.
+### A.2. API Document
+After using `docker-compose.yml`, you should be able to open the following swagger docs
+[swagger](http://localhost:9789/docs).
+![swagger example](docs/swagger.png)
 
 ### A.3. Import Data Commands
-Please run these two script commands to migrate the data into the database.
+Data import is implemented in [start.sh](start.sh), once the API is started, data import will be done
 
-```bash
-$ rake import_data:pharmacies[PATH_TO_FILE]
-$ rake import_data:users[PATH_TO_FILE]
-```
 ## B. Bonus Information
 
->  If you completed the bonus requirements, please fill in your task below.
-### B.1. Test Coverage Report
-
-I wrote down the 20 unit tests for the APIs I built. Please check the test coverage report at [here](#test-coverage-report).
-
-You can run the test script by using the command below:
-
-```bash
-bundle exec rspec spec
-```
-
-### B.2. Dockerized
-Please check my Dockerfile / docker-compose.yml at [here](#dockerized).
+### B.1. Dockerized
+Please check my [Dockerfile](docker/Dockerfile) / [docker-compose.yml](docker/docker-compose.yml).
 
 On the local machine, please follow the commands below to build it.
-
+After building image, you should be able to use docker-compose to have DB and API service
 ```bash
-$ docker build --build-arg ENV=development -p 80:3000 -t my-project:1.0.0 .  
+$ docker build -t fastapi:test -f docker/Dockerfile .  
 $ docker-compose up -d
-
-# go inside the container, run the migrate data command.
-$ docker exec -it my-project bash
-$ rake import_data:pharmacies[PATH_TO_FILE] 
-$ rake import_data:user[PATH_TO_FILE]
 ```
-
-### B.3. Demo Site Url
-
-The demo site is ready on [my AWS demo site](#demo-site-url); you can try any APIs on this demo site.
-
-## C. Other Information
-
-### C.1. ERD
-
-My ERD [erd-link](#erd-link).
-
-### C.2. Technical Document
-
-For frontend programmer reading, please check this [technical document](technical-document) to know how to operate those APIs.
-
-- --
