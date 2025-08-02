@@ -1,7 +1,7 @@
 import json
 from pymongo import MongoClient
 
-mongo_uri = "mongodb://root:example@linxpa-dl01:27017/?authSource=admin"
+mongo_uri = "mongodb://root:example@localhost:27017/?authSource=admin"
 client = MongoClient(mongo_uri)
 
 db = client["maskstore"]
