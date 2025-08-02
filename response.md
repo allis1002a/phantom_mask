@@ -62,6 +62,6 @@ Due to limited time, I've only completed an integration test for my router `sear
 Command to reproduce test
 ```bash
 $ docker exec -it api /bin/bash
-$ coverage run --source=app --module pytest tests &coverage report
+$ coverage run --source=app --module pytest tests && coverage report
 ```
 ![](docs/coverage_report.png)
