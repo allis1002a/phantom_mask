@@ -36,7 +36,8 @@ After using `docker-compose.yml`, you should be able to open the following swagg
 ![swagger example](docs/swagger.png)
 
 ### A.3. Import Data Commands
-Data import is implemented in [start.sh](start.sh), once the API is started, data import will be done
+Data import is implemented in [start.sh](start.sh), once the API is started, data will be imported<br>
+Commands for ETL and DB startup are included in [scipts/init_db.py](scripts/init_db.py) and [scripts/convert_to_schema.py](scripts/conver_to_schema.py)
 
 ## B. Bonus Information
 
@@ -49,3 +50,18 @@ After building image, you should be able to use docker-compose to have DB and AP
 $ docker build -t fastapi:test -f docker/Dockerfile .  
 $ docker-compose up -d
 ```
+### B.2 Deployment (Verbal Summary)
+Due to limited time, I haven’t completed the implementation yet, but I’d like to explain my idea verbally. I’ve previously tried two approaches:
+1. **Azure Web Service + Azure DevOps Repo**  
+  I used this method for deployment before, but it doesn’t fit well with the current project structure, since I’m using Docker Compose to run multiple services.
+2. **Azure VM + Docker + Azure DevOps Repo**  
+  This setup works better for the current architecture. I installed Docker on the VM and used the Azure DevOps Repo to deploy the project. It's more flexible and suitable for running a `docker-compose.yml`-based application.
+
+### B.3. Test
+Due to limited time, I've only completed an integration test for my router `search`, but only achieved coverage of 61%.<br> 
+Command to reproduce test
+```bash
+$ docker exec -it api /bin/bash
+$ coverage run --source=app --module pytest tests &coverage report
+```
+![](docs/coverage_report.png)
